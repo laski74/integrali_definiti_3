@@ -5,20 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Integrali Definiti - Esercitazioni Interattive</title>
     
-
-<script>
-window.MathJax = {
-    tex: {
-        inlineMath: [['$', '$']],
-        displayMath: [['$$', '$$']]
-    }
-};
-</script>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js"></script>
-
-
+    <script>
+    window.MathJax = {
+        tex: {
+            inlineMath: [['$', '$']],
+            displayMath: [['$$', '$$']]
+        }
+    };
+    </script>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-mml-chtml.js"></script>
     <script src="https://cdn.plot.ly/plotly-2.27.0.min.js"></script>
+    
     <style>
         * {
             margin: 0;
@@ -119,191 +117,12 @@ window.MathJax = {
             padding-left: 15px;
         }
 
-        h3 {
-            color: #667eea;
-            margin: 20px 0 15px 0;
-            font-size: 22px;
-        }
-
-        /* Mappa Concettuale */
-        .flowchart {
-            background: white;
-            padding: 40px;
-            border-radius: 15px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
-            margin: 20px 0;
-        }
-
-        .flow-node {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 20px;
-            border-radius: 15px;
-            margin: 20px auto;
-            max-width: 500px;
-            text-align: center;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
-            position: relative;
-            animation: slideIn 0.5s ease-out;
-        }
-
-        @keyframes slideIn {
-            from { transform: scale(0.8); opacity: 0; }
-            to { transform: scale(1); opacity: 1; }
-        }
-
-        .flow-node.level-2 {
-            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-            max-width: 450px;
-        }
-
-        .flow-node.level-3 {
-            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
-            max-width: 400px;
-            font-size: 14px;
-        }
-
-        .arrow {
-            text-align: center;
-            font-size: 30px;
-            color: #667eea;
-            margin: 10px 0;
-        }
-
-        /* Esercizi */
-        .exercise-card {
+        .interactive-section {
             background: white;
             padding: 25px;
-            margin: 20px 0;
             border-radius: 15px;
+            margin: 20px 0;
             box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-            border-left: 5px solid #667eea;
-            transition: all 0.3s ease;
-        }
-
-        .exercise-card:hover {
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-            transform: translateY(-5px);
-        }
-
-        .exercise-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 15px;
-        }
-
-        .exercise-number {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 8px 16px;
-            border-radius: 20px;
-            font-weight: bold;
-        }
-
-        .difficulty {
-            padding: 5px 15px;
-            border-radius: 15px;
-            font-size: 12px;
-            font-weight: bold;
-        }
-
-        .difficulty.easy {
-            background: #48bb78;
-            color: white;
-        }
-
-        .difficulty.medium {
-            background: #ed8936;
-            color: white;
-        }
-
-        .difficulty.hard {
-            background: #f56565;
-            color: white;
-        }
-
-        .exercise-text {
-            font-size: 18px;
-            line-height: 1.8;
-            margin: 20px 0;
-            color: #2d3748;
-        }
-
-        .toggle-solution {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            border: none;
-            padding: 12px 30px;
-            border-radius: 25px;
-            cursor: pointer;
-            font-size: 16px;
-            font-weight: bold;
-            margin: 15px 0;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
-        }
-
-        .toggle-solution:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6);
-        }
-
-        .solution {
-            display: none;
-            background: #f7fafc;
-            padding: 25px;
-            border-radius: 10px;
-            margin-top: 15px;
-            border-left: 4px solid #48bb78;
-            animation: slideDown 0.3s ease-out;
-        }
-
-        @keyframes slideDown {
-            from { opacity: 0; max-height: 0; }
-            to { opacity: 1; max-height: 2000px; }
-        }
-
-        .solution.show {
-            display: block;
-        }
-
-        .step {
-            margin: 15px 0;
-            padding: 15px;
-            background: white;
-            border-radius: 8px;
-            border-left: 3px solid #667eea;
-        }
-
-        .step-title {
-            font-weight: bold;
-            color: #667eea;
-            margin-bottom: 10px;
-        }
-
-        .hint {
-            background: #fff5e6;
-            padding: 15px;
-            border-radius: 8px;
-            border-left: 4px solid #ed8936;
-            margin: 15px 0;
-        }
-
-        .warning {
-            background: #ffe6e6;
-            padding: 15px;
-            border-radius: 8px;
-            border-left: 4px solid #f56565;
-            margin: 15px 0;
-        }
-
-        .info {
-            background: #e6f7ff;
-            padding: 15px;
-            border-radius: 8px;
-            border-left: 4px solid #4facfe;
-            margin: 15px 0;
         }
 
         .graph-container {
@@ -312,6 +131,7 @@ window.MathJax = {
             border-radius: 10px;
             margin: 20px 0;
             box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            min-height: 400px;
         }
 
         .formula-box {
@@ -325,43 +145,32 @@ window.MathJax = {
             box-shadow: 0 5px 15px rgba(0,0,0,0.2);
         }
 
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            margin: 20px 0;
-            background: white;
-            border-radius: 10px;
-            overflow: hidden;
-            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-        }
-
-        th {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 15px;
-            text-align: left;
-        }
-
-        td {
-            padding: 15px;
-            border-bottom: 1px solid #e2e8f0;
-        }
-
-        tr:hover {
-            background: #f7fafc;
-        }
-
-        .interactive-section {
-            background: white;
-            padding: 25px;
-            border-radius: 15px;
-            margin: 20px 0;
-            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
-        }
-
         input[type="range"] {
             width: 100%;
             margin: 15px 0;
+            height: 8px;
+            border-radius: 5px;
+            background: #ddd;
+            outline: none;
+            -webkit-appearance: none;
+        }
+
+        input[type="range"]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: #667eea;
+            cursor: pointer;
+        }
+
+        input[type="range"]::-moz-range-thumb {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: #667eea;
+            cursor: pointer;
         }
 
         .slider-label {
@@ -391,934 +200,31 @@ window.MathJax = {
     <div class="container">
         <div class="sidebar">
             <div class="logo">📊 Integrali Definiti</div>
-            <div class="menu-item active" onclick="showTab('mappa')">
-                🗺️ Mappa Concettuale
-            </div>
-            <div class="menu-item" onclick="showTab('teoria')">
-                📚 Teoria Essenziale
-            </div>
-            <div class="menu-item" onclick="showTab('geometria')">
-                📐 Esercizi Geometria
-            </div>
-            <div class="menu-item" onclick="showTab('fisica')">
-                ⚡ Esercizi Fisica
-            </div>
-            <div class="menu-item" onclick="showTab('misti')">
-                🎯 Esercizi Misti
-            </div>
-            <div class="menu-item" onclick="showTab('interattivi')">
+            <div class="menu-item active" onclick="showTab('interattivi')">
                 🎮 Grafici Interattivi
             </div>
         </div>
 
         <div class="content">
-            <!-- TAB: MAPPA CONCETTUALE -->
-            <div id="mappa" class="tab-content active">
-                <h1>🗺️ Mappa Concettuale - Integrali Definiti</h1>
-                
-                <div class="flowchart">
-                    <div class="flow-node">
-                        <h2 style="color: white; margin: 0;">INTEGRALE DEFINITO</h2>
-                        <p>$\int_a^b f(x) \, dx$</p>
-                    </div>
-                    
-                    <div class="arrow">⬇️</div>
-                    
-                    <div class="flow-node level-2">
-                        <h3 style="color: white;">Interpretazione Geometrica</h3>
-                        <p>Area tra la curva e l'asse x nell'intervallo [a, b]</p>
-                    </div>
-                    
-                    <div class="arrow">⬇️</div>
-                    
-                    <div style="display: flex; justify-content: space-around; flex-wrap: wrap;">
-                        <div class="flow-node level-3" style="flex: 1; margin: 10px;">
-                            <strong>Teorema Fondamentale</strong><br>
-                            $\int_a^b f(x) \, dx = F(b) - F(a)$<br>
-                            dove $F'(x) = f(x)$
-                        </div>
-                        
-                        <div class="flow-node level-3" style="flex: 1; margin: 10px;">
-                            <strong>Proprietà Linearità</strong><br>
-                            $\int_a^b [c \cdot f(x)] \, dx = c \int_a^b f(x) \, dx$
-                        </div>
-                        
-                        <div class="flow-node level-3" style="flex: 1; margin: 10px;">
-                            <strong>Additività</strong><br>
-                            $\int_a^c f(x) \, dx = \int_a^b f(x) \, dx + \int_b^c f(x) \, dx$
-                        </div>
-                    </div>
-                    
-                    <div class="arrow">⬇️</div>
-                    
-                    <div class="flow-node">
-                        <h3 style="color: white;">APPLICAZIONI</h3>
-                    </div>
-                    
-                    <div class="arrow">⬇️</div>
-                    
-                    <div style="display: flex; justify-content: space-around; flex-wrap: wrap;">
-                        <div class="flow-node level-2" style="flex: 1; margin: 10px;">
-                            <strong>GEOMETRIA</strong><br>
-                            • Aree<br>
-                            • Volumi (rotazione)<br>
-                            • Lunghezza curve
-                        </div>
-                        
-                        <div class="flow-node level-2" style="flex: 1; margin: 10px;">
-                            <strong>FISICA</strong><br>
-                            • Lavoro<br>
-                            • Velocità → Spazio<br>
-                            • Baricentro
-                        </div>
-                        
-                        <div class="flow-node level-2" style="flex: 1; margin: 10px;">
-                            <strong>ANALISI</strong><br>
-                            • Valor medio<br>
-                            • Funzioni integrali<br>
-                            • Integrali impropri
-                        </div>
-                    </div>
-                </div>
-
-                <div class="formula-box">
-                    <h3 style="color: white; margin-bottom: 15px;">📋 Formule Fondamentali</h3>
-                    <p>$$\int_a^b f(x) \, dx = F(b) - F(a) = \left[ F(x) \right]_a^b$$</p>
-                </div>
-            </div>
-
-            <!-- TAB: TEORIA ESSENZIALE -->
-            <div id="teoria" class="tab-content">
-                <h1>📚 Teoria Essenziale</h1>
-                
-                <div class="exercise-card">
-                    <h2>Definizione di Integrale Definito</h2>
-                    <p class="exercise-text">
-                        L'integrale definito di una funzione $f(x)$ continua nell'intervallo $[a, b]$ è il limite della somma di Riemann:
-                    </p>
-                    <div class="formula-box">
-                        $$\int_a^b f(x) \, dx = \lim_{n \to \infty} \sum_{i=1}^{n} f(x_i^*) \cdot \Delta x$$
-                    </div>
-                    <p class="exercise-text">
-                        dove $\Delta x = \frac{b-a}{n}$ e $x_i^*$ è un punto qualsiasi nell'intervallo $[x_{i-1}, x_i]$.
-                    </p>
-                </div>
-
-                <div class="exercise-card">
-                    <h2>Teorema Fondamentale del Calcolo Integrale</h2>
-                    <div class="info">
-                        <strong>Prima Parte:</strong> Se $f$ è continua in $[a, b]$, allora la funzione:
-                        $$F(x) = \int_a^x f(t) \, dt$$
-                        è derivabile e $F'(x) = f(x)$.
-                    </div>
-                    <div class="info">
-                        <strong>Seconda Parte:</strong> Se $f$ è continua in $[a, b]$ e $F$ è una primitiva di $f$, allora:
-                        $$\int_a^b f(x) \, dx = F(b) - F(a)$$
-                    </div>
-                </div>
-
-                <div class="exercise-card">
-                    <h2>Proprietà degli Integrali Definiti</h2>
-                    <table>
-                        <tr>
-                            <th>Proprietà</th>
-                            <th>Formula</th>
-                        </tr>
-                        <tr>
-                            <td><strong>Linearità</strong></td>
-                            <td>$\int_a^b [c \cdot f(x) + d \cdot g(x)] \, dx = c \int_a^b f(x) \, dx + d \int_a^b g(x) \, dx$</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Additività</strong></td>
-                            <td>$\int_a^b f(x) \, dx = \int_a^c f(x) \, dx + \int_c^b f(x) \, dx$</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Inversione limiti</strong></td>
-                            <td>$\int_a^b f(x) \, dx = -\int_b^a f(x) \, dx$</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Funzione pari</strong></td>
-                            <td>$\int_{-a}^a f(x) \, dx = 2 \int_0^a f(x) \, dx$ se $f(-x) = f(x)$</td>
-                        </tr>
-                        <tr>
-                            <td><strong>Funzione dispari</strong></td>
-                            <td>$\int_{-a}^a f(x) \, dx = 0$ se $f(-x) = -f(x)$</td>
-                        </tr>
-                    </table>
-                </div>
-
-                <div class="exercise-card">
-                    <h2>Valore Medio di una Funzione</h2>
-                    <div class="formula-box">
-                        $$\text{Valore medio} = \frac{1}{b-a} \int_a^b f(x) \, dx$$
-                    </div>
-                    <p class="exercise-text">
-                        Il valore medio rappresenta l'altezza del rettangolo che ha la stessa area della regione sotto la curva.
-                    </p>
-                </div>
-            </div>
-
-            <!-- TAB: ESERCIZI GEOMETRIA -->
-            <div id="geometria" class="tab-content">
-                <h1>📐 Esercizi di Geometria</h1>
-
-                <!-- Esercizio 1 -->
-                <div class="exercise-card">
-                    <div class="exercise-header">
-                        <span class="exercise-number">Esercizio 1</span>
-                        <span class="difficulty easy">Facile</span>
-                    </div>
-                    <div class="exercise-text">
-                        Calcola l'area della regione delimitata dalla parabola $y = x^2$, dall'asse $x$ e dalle rette $x = 0$ e $x = 2$.
-                    </div>
-                    <button class="toggle-solution" onclick="toggleSolution(this)">Mostra Soluzione</button>
-                    <div class="solution">
-                        <div class="step">
-                            <div class="step-title">📝 Passo 1: Impostazione dell'integrale</div>
-                            <p>L'area richiesta è data dall'integrale definito:</p>
-                            <p>$$A = \int_0^2 x^2 \, dx$$</p>
-                        </div>
-
-                        <div class="step">
-                            <div class="step-title">🔧 Passo 2: Calcolo della primitiva</div>
-                            <p>La primitiva di $x^2$ è:</p>
-                            <p>$$F(x) = \frac{x^3}{3}$$</p>
-                            <div class="hint">
-                                💡 <strong>Ricorda:</strong> La primitiva di $x^n$ è $\frac{x^{n+1}}{n+1}$ (per $n \neq -1$)
-                            </div>
-                        </div>
-
-                        <div class="step">
-                            <div class="step-title">📊 Passo 3: Applicazione del Teorema Fondamentale</div>
-                            <p>$$A = \left[ \frac{x^3}{3} \right]_0^2 = \frac{2^3}{3} - \frac{0^3}{3} = \frac{8}{3} - 0 = \frac{8}{3}$$</p>
-                        </div>
-
-                        <div class="step">
-                            <div class="step-title">✅ Risultato Finale</div>
-                            <p>$$A = \frac{8}{3} \text{ unità quadrate} \approx 2.67 \text{ u}^2$$</p>
-                        </div>
-
-                        <div class="graph-container" id="graph1"></div>
-
-                        <div class="warning">
-                            ⚠️ <strong>Errore comune:</strong> Non dimenticare di sottrarre $F(a)$ da $F(b)$! Molti studenti calcolano solo $F(b)$.
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Esercizio 2 -->
-                <div class="exercise-card">
-                    <div class="exercise-header">
-                        <span class="exercise-number">Esercizio 2</span>
-                        <span class="difficulty medium">Medio</span>
-                    </div>
-                    <div class="exercise-text">
-                        Trova l'area compresa tra le curve $y = x^2$ e $y = x + 2$ nell'intervallo dove si intersecano.
-                    </div>
-                    <button class="toggle-solution" onclick="toggleSolution(this)">Mostra Soluzione</button>
-                    <div class="solution">
-                        <div class="step">
-                            <div class="step-title">🎯 Passo 1: Trovare i punti di intersezione</div>
-                            <p>Imponiamo $x^2 = x + 2$:</p>
-                            <p>$$x^2 - x - 2 = 0$$</p>
-                            <p>$$(x - 2)(x + 1) = 0$$</p>
-                            <p>Quindi $x = -1$ oppure $x = 2$</p>
-                            <div class="hint">
-                                💡 I punti di intersezione determinano gli estremi di integrazione!
-                            </div>
-                        </div>
-
-                        <div class="step">
-                            <div class="step-title">📐 Passo 2: Determinare quale funzione è sopra</div>
-                            <p>Verifichiamo in $x = 0$ (punto intermedio):</p>
-                            <p>• $y = x^2 = 0$</p>
-                            <p>• $y = x + 2 = 2$</p>
-                            <p>Quindi $x + 2 > x^2$ nell'intervallo $[-1, 2]$</p>
-                        </div>
-
-                        <div class="step">
-                            <div class="step-title">🔧 Passo 3: Impostazione e calcolo dell'integrale</div>
-                            <p>$$A = \int_{-1}^{2} [(x + 2) - x^2] \, dx = \int_{-1}^{2} (x + 2 - x^2) \, dx$$</p>
-                            <p>Primitiva: $F(x) = \frac{x^2}{2} + 2x - \frac{x^3}{3}$</p>
-                        </div>
-
-                        <div class="step">
-                            <div class="step-title">📊 Passo 4: Calcolo dei valori agli estremi</div>
-                            <p>$$F(2) = \frac{4}{2} + 4 - \frac{8}{3} = 2 + 4 - \frac{8}{3} = 6 - \frac{8}{3} = \frac{10}{3}$$</p>
-                            <p>$$F(-1) = \frac{1}{2} - 2 + \frac{1}{3} = \frac{3 - 12 + 2}{6} = -\frac{7}{6}$$</p>
-                        </div>
-
-                        <div class="step">
-                            <div class="step-title">✅ Risultato Finale</div>
-                            <p>$$A = F(2) - F(-1) = \frac{10}{3} - \left(-\frac{7}{6}\right) = \frac{20}{6} + \frac{7}{6} = \frac{27}{6} = \frac{9}{2} = 4.5$$</p>
-                        </div>
-
-                        <div class="graph-container" id="graph2"></div>
-
-                        <div class="warning">
-                            ⚠️ <strong>Errore comune:</strong> Ricordati di sottrarre la funzione inferiore dalla funzione superiore! L'ordine è fondamentale.
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Esercizio 3 -->
-                <div class="exercise-card">
-                    <div class="exercise-header">
-                        <span class="exercise-number">Esercizio 3</span>
-                        <span class="difficulty medium">Medio</span>
-                    </div>
-                    <div class="exercise-text">
-                        Calcola il volume del solido generato dalla rotazione attorno all'asse $x$ della regione delimitata da $y = \sqrt{x}$, $x = 0$ e $x = 4$.
-                    </div>
-                    <button class="toggle-solution" onclick="toggleSolution(this)">Mostra Soluzione</button>
-                    <div class="solution">
-                        <div class="step">
-                            <div class="step-title">📝 Passo 1: Formula del volume di rotazione</div>
-                            <p>Il volume generato dalla rotazione attorno all'asse $x$ è:</p>
-                            <p>$$V = \pi \int_a^b [f(x)]^2 \, dx$$</p>
-                            <div class="info">
-                                ℹ️ Questa formula deriva dal metodo dei dischi: ogni sezione è un disco di raggio $r = f(x)$ e area $\pi r^2$.
-                            </div>
-                        </div>
-
-                        <div class="step">
-                            <div class="step-title">🔧 Passo 2: Impostazione dell'integrale</div>
-                            <p>$$V = \pi \int_0^4 (\sqrt{x})^2 \, dx = \pi \int_0^4 x \, dx$$</p>
-                        </div>
-
-                        <div class="step">
-                            <div class="step-title">📊 Passo 3: Calcolo</div>
-                            <p>$$V = \pi \left[ \frac{x^2}{2} \right]_0^4 = \pi \left( \frac{16}{2} - 0 \right) = 8\pi$$</p>
-                        </div>
-
-                        <div class="step">
-                            <div class="step-title">✅ Risultato Finale</div>
-                            <p>$$V = 8\pi \text{ unità cubiche} \approx 25.13 \text{ u}^3$$</p>
-                        </div>
-
-                        <div class="graph-container" id="graph3"></div>
-
-                        <div class="hint">
-                            💡 <strong>Visualizzazione:</strong> Immagina di far ruotare la curva attorno all'asse $x$ come un tornio. Il solido risultante è simile a un cono arrotondato.
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Esercizio 4 -->
-                <div class="exercise-card">
-                    <div class="exercise-header">
-                        <span class="exercise-number">Esercizio 4</span>
-                        <span class="difficulty hard">Difficile</span>
-                    </div>
-                    <div class="exercise-text">
-                        Determina l'area della regione delimitata dalle curve $y = \sin x$ e $y = \cos x$ per $0 \leq x \leq \pi$.
-                    </div>
-                    <button class="toggle-solution" onclick="toggleSolution(this)">Mostra Soluzione</button>
-                    <div class="solution">
-                        <div class="step">
-                            <div class="step-title">🎯 Passo 1: Trovare i punti di intersezione</div>
-                            <p>Imponiamo $\sin x = \cos x$:</p>
-                            <p>$$\tan x = 1$$</p>
-                            <p>$$x = \frac{\pi}{4}$$ (nell'intervallo $[0, \pi]$)</p>
-                        </div>
-
-                        <div class="step">
-                            <div class="step-title">📐 Passo 2: Analizzare quale funzione è sopra</div>
-                            <p>• Per $x \in [0, \frac{\pi}{4}]$: $\cos x > \sin x$</p>
-                            <p>• Per $x \in [\frac{\pi}{4}, \pi]$: $\sin x > \cos x$</p>
-                            <div class="hint">
-                                💡 Dobbiamo dividere l'integrale in due parti!
-                            </div>
-                        </div>
-
-                        <div class="step">
-                            <div class="step-title">🔧 Passo 3: Impostazione degli integrali</div>
-                            <p>$$A = \int_0^{\pi/4} (\cos x - \sin x) \, dx + \int_{\pi/4}^{\pi} (\sin x - \cos x) \, dx$$</p>
-                        </div>
-
-                        <div class="step">
-                            <div class="step-title">📊 Passo 4: Calcolo del primo integrale</div>
-                            <p>$$\int_0^{\pi/4} (\cos x - \sin x) \, dx = [\sin x + \cos x]_0^{\pi/4}$$</p>
-                            <p>$$= \left(\frac{\sqrt{2}}{2} + \frac{\sqrt{2}}{2}\right) - (0 + 1) = \sqrt{2} - 1$$</p>
-                        </div>
-
-                        <div class="step">
-                            <div class="step-title">📊 Passo 5: Calcolo del secondo integrale</div>
-                            <p>$$\int_{\pi/4}^{\pi} (\sin x - \cos x) \, dx = [-\cos x - \sin x]_{\pi/4}^{\pi}$$</p>
-                            <p>$$= (-(-1) - 0) - \left(-\frac{\sqrt{2}}{2} - \frac{\sqrt{2}}{2}\right) = 1 + \sqrt{2}$$</p>
-                        </div>
-
-                        <div class="step">
-                            <div class="step-title">✅ Risultato Finale</div>
-                            <p>$$A = (\sqrt{2} - 1) + (1 + \sqrt{2}) = 2\sqrt{2} \approx 2.828$$</p>
-                        </div>
-
-                        <div class="graph-container" id="graph4"></div>
-
-                        <div class="warning">
-                            ⚠️ <strong>Errore comune:</strong> Non dimenticare di dividere l'integrale quando le funzioni si incrociano! Altrimenti otterrai un risultato errato o nullo.
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Esercizio 5 -->
-                <div class="exercise-card">
-                    <div class="exercise-header">
-                        <span class="exercise-number">Esercizio 5</span>
-                        <span class="difficulty hard">Difficile</span>
-                    </div>
-                    <div class="exercise-text">
-                        Calcola la lunghezza dell'arco della curva $y = \frac{2}{3}x^{3/2}$ da $x = 0$ a $x = 5$.
-                    </div>
-                    <button class="toggle-solution" onclick="toggleSolution(this)">Mostra Soluzione</button>
-                    <div class="solution">
-                        <div class="step">
-                            <div class="step-title">📝 Passo 1: Formula della lunghezza d'arco</div>
-                            <p>$$L = \int_a^b \sqrt{1 + [f'(x)]^2} \, dx$$</p>
-                        </div>
-
-                        <div class="step">
-                            <div class="step-title">🔧 Passo 2: Calcolo della derivata</div>
-                            <p>$$y = \frac{2}{3}x^{3/2}$$</p>
-                            <p>$$y' = \frac{2}{3} \cdot \frac{3}{2}x^{1/2} = x^{1/2} = \sqrt{x}$$</p>
-                        </div>
-
-                        <div class="step">
-                            <div class="step-title">📐 Passo 3: Impostazione dell'integrale</div>
-                            <p>$$L = \int_0^5 \sqrt{1 + x} \, dx$$</p>
-                        </div>
-
-                        <div class="step">
-                            <div class="step-title">🔄 Passo 4: Sostituzione</div>
-                            <p>Poniamo $u = 1 + x$, quindi $du = dx$</p>
-                            <p>Quando $x = 0$: $u = 1$</p>
-                            <p>Quando $x = 5$: $u = 6$</p>
-                            <p>$$L = \int_1^6 \sqrt{u} \, du = \int_1^6 u^{1/2} \, du$$</p>
-                        </div>
-
-                        <div class="step">
-                            <div class="step-title">📊 Passo 5: Calcolo</div>
-                            <p>$$L = \left[ \frac{u^{3/2}}{3/2} \right]_1^6 = \frac{2}{3}\left[ u^{3/2} \right]_1^6$$</p>
-                            <p>$$= \frac{2}{3}(6^{3/2} - 1) = \frac{2}{3}(6\sqrt{6} - 1)$$</p>
-                        </div>
-
-                        <div class="step">
-                            <div class="step-title">✅ Risultato Finale</div>
-                            <p>$$L = \frac{2}{3}(6\sqrt{6} - 1) \approx 9.07 \text{ unità}$$</p>
-                        </div>
-
-                        <div class="info">
-                            ℹ️ La lunghezza d'arco misura la distanza effettiva lungo la curva, diversa dalla distanza in linea retta.
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- TAB: ESERCIZI FISICA -->
-            <div id="fisica" class="tab-content">
-                <h1>⚡ Esercizi di Fisica</h1>
-
-                <!-- Esercizio Fisica 1 -->
-                <div class="exercise-card">
-                    <div class="exercise-header">
-                        <span class="exercise-number">Fisica 1</span>
-                        <span class="difficulty easy">Facile</span>
-                    </div>
-                    <div class="exercise-text">
-                        Una particella si muove lungo l'asse $x$ con velocità $v(t) = 3t^2 - 2t$ m/s. Calcola lo spostamento della particella tra $t = 0$ s e $t = 4$ s.
-                    </div>
-                    <button class="toggle-solution" onclick="toggleSolution(this)">Mostra Soluzione</button>
-                    <div class="solution">
-                        <div class="step">
-                            <div class="step-title">📝 Passo 1: Relazione tra velocità e spostamento</div>
-                            <p>Lo spostamento è l'integrale della velocità:</p>
-                            <p>$$s = \int_0^4 v(t) \, dt = \int_0^4 (3t^2 - 2t) \, dt$$</p>
-                            <div class="info">
-                                ℹ️ <strong>Ricorda:</strong> La velocità è la derivata dello spostamento, quindi lo spostamento è la primitiva della velocità.
-                            </div>
-                        </div>
-
-                        <div class="step">
-                            <div class="step-title">🔧 Passo 2: Calcolo della primitiva</div>
-                            <p>$$s(t) = t^3 - t^2$$</p>
-                        </div>
-
-                        <div class="step">
-                            <div class="step-title">📊 Passo 3: Applicazione degli estremi</div>
-                            <p>$$s = [t^3 - t^2]_0^4 = (64 - 16) - (0 - 0) = 48 \text{ m}$$</p>
-                        </div>
-
-                        <div class="step">
-                            <div class="step-title">✅ Risultato Finale</div>
-                            <p>La particella si è spostata di <strong>48 metri</strong> nella direzione positiva dell'asse $x$.</p>
-                        </div>
-
-                        <div class="graph-container" id="graphF1"></div>
-
-                        <div class="hint">
-                            💡 <strong>Interpretazione fisica:</strong> L'area sotto la curva velocità-tempo rappresenta lo spostamento!
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Esercizio Fisica 2 -->
-                <div class="exercise-card">
-                    <div class="exercise-header">
-                        <span class="exercise-number">Fisica 2</span>
-                        <span class="difficulty medium">Medio</span>
-                    </div>
-                    <div class="exercise-text">
-                        Una forza variabile $F(x) = 20 - 2x$ N agisce su un oggetto che si muove lungo l'asse $x$ da $x = 0$ m a $x = 8$ m. Calcola il lavoro compiuto dalla forza.
-                    </div>
-                    <button class="toggle-solution" onclick="toggleSolution(this)">Mostra Soluzione</button>
-                    <div class="solution">
-                        <div class="step">
-                            <div class="step-title">📝 Passo 1: Formula del lavoro</div>
-                            <p>Il lavoro compiuto da una forza variabile è:</p>
-                            <p>$$W = \int_a^b F(x) \, dx$$</p>
-                            <div class="info">
-                                ℹ️ Per forze costanti: $W = F \cdot d$. Per forze variabili dobbiamo integrare!
-                            </div>
-                        </div>
-
-                        <div class="step">
-                            <div class="step-title">🔧 Passo 2: Impostazione dell'integrale</div>
-                            <p>$$W = \int_0^8 (20 - 2x) \, dx$$</p>
-                        </div>
-
-                        <div class="step">
-                            <div class="step-title">📊 Passo 3: Calcolo</div>
-                            <p>$$W = [20x - x^2]_0^8 = (160 - 64) - 0 = 96 \text{ J}$$</p>
-                        </div>
-
-                        <div class="step">
-                            <div class="step-title">✅ Risultato Finale</div>
-                            <p>Il lavoro compiuto dalla forza è <strong>96 Joule</strong>.</p>
-                        </div>
-
-                        <div class="graph-container" id="graphF2"></div>
-
-                        <div class="hint">
-                            💡 <strong>Nota:</strong> La forza diminuisce linearmente da 20 N a 4 N. Il lavoro è l'area del trapezio sotto la curva!
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Esercizio Fisica 3 -->
-                <div class="exercise-card">
-                    <div class="exercise-header">
-                        <span class="exercise-number">Fisica 3</span>
-                        <span class="difficulty medium">Medio</span>
-                    </div>
-                    <div class="exercise-text">
-                        Un'automobile parte da ferma e accelera con accelerazione $a(t) = 4 - 0.5t$ m/s² per 6 secondi. Determina:
-                        <br>a) La velocità finale
-                        <br>b) Lo spazio percorso
-                    </div>
-                    <button class="toggle-solution" onclick="toggleSolution(this)">Mostra Soluzione</button>
-                    <div class="solution">
-                        <div class="step">
-                            <div class="step-title">📝 Parte a) - Velocità finale</div>
-                            <p>La velocità si ottiene integrando l'accelerazione:</p>
-                            <p>$$v(t) = \int_0^t a(\tau) \, d\tau = \int_0^t (4 - 0.5\tau) \, d\tau$$</p>
-                            <p>$$v(t) = [4\tau - 0.25\tau^2]_0^t = 4t - 0.25t^2$$</p>
-                        </div>
-
-                        <div class="step">
-                            <div class="step-title">📊 Calcolo velocità a t = 6 s</div>
-                            <p>$$v(6) = 4(6) - 0.25(36) = 24 - 9 = 15 \text{ m/s}$$</p>
-                        </div>
-
-                        <div class="step">
-                            <div class="step-title">📝 Parte b) - Spazio percorso</div>
-                            <p>Lo spazio si ottiene integrando la velocità:</p>
-                            <p>$$s = \int_0^6 v(t) \, dt = \int_0^6 (4t - 0.25t^2) \, dt$$</p>
-                            <p>$$s = [2t^2 - \frac{t^3}{12}]_0^6 = 2(36) - \frac{216}{12} = 72 - 18 = 54 \text{ m}$$</p>
-                        </div>
-
-                        <div class="step">
-                            <div class="step-title">✅ Risultati Finali</div>
-                            <p>a) Velocità finale: <strong>15 m/s</strong></p>
-                            <p>b) Spazio percorso: <strong>54 m</strong></p>
-                        </div>
-
-                        <div class="graph-container" id="graphF3"></div>
-
-                        <div class="info">
-                            ℹ️ <strong>Catena di integrazioni:</strong> Accelerazione → Velocità → Posizione
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Esercizio Fisica 4 -->
-                <div class="exercise-card">
-                    <div class="exercise-header">
-                        <span class="exercise-number">Fisica 4</span>
-                        <span class="difficulty hard">Difficile</span>
-                    </div>
-                    <div class="exercise-text">
-                        Una molla di costante elastica $k = 200$ N/m viene compressa di 0.3 m. Calcola:
-                        <br>a) Il lavoro necessario per comprimere la molla
-                        <br>b) L'energia potenziale elastica immagazzinata
-                    </div>
-                    <button class="toggle-solution" onclick="toggleSolution(this)">Mostra Soluzione</button>
-                    <div class="solution">
-                        <div class="step">
-                            <div class="step-title">📝 Passo 1: Forza elastica</div>
-                            <p>La forza esercitata da una molla è data dalla legge di Hooke:</p>
-                            <p>$$F(x) = -kx$$</p>
-                            <p>Il lavoro contro la forza elastica è:</p>
-                            <p>$$W = -\int_0^{0.3} F(x) \, dx = \int_0^{0.3} kx \, dx$$</p>
-                            <div class="info">
-                                ℹ️ Il segno negativo indica che dobbiamo compiere lavoro contro la forza di richiamo della molla.
-                            </div>
-                        </div>
-
-                        <div class="step">
-                            <div class="step-title">🔧 Passo 2: Calcolo del lavoro</div>
-                            <p>$$W = \int_0^{0.3} 200x \, dx = 200 \left[ \frac{x^2}{2} \right]_0^{0.3}$$</p>
-                            <p>$$W = 100[x^2]_0^{0.3} = 100(0.09 - 0) = 9 \text{ J}$$</p>
-                        </div>
-
-                        <div class="step">
-                            <div class="step-title">📊 Passo 3: Energia potenziale elastica</div>
-                            <p>L'energia potenziale elastica è uguale al lavoro compiuto per comprimere la molla:</p>
-                            <p>$$U = \frac{1}{2}kx^2 = \frac{1}{2}(200)(0.3)^2 = 100(0.09) = 9 \text{ J}$$</p>
-                            <div class="hint">
-                                💡 Questa formula è la primitiva della forza elastica!
-                            </div>
-                        </div>
-
-                        <div class="step">
-                            <div class="step-title">✅ Risultati Finali</div>
-                            <p>a) Lavoro necessario: <strong>9 J</strong></p>
-                            <p>b) Energia potenziale: <strong>9 J</strong></p>
-                            <p>Come previsto, il lavoro compiuto viene completamente convertito in energia potenziale elastica!</p>
-                        </div>
-
-                        <div class="graph-container" id="graphF4"></div>
-                    </div>
-                </div>
-
-                <!-- Esercizio Fisica 5 -->
-                <div class="exercise-card">
-                    <div class="exercise-header">
-                        <span class="exercise-number">Fisica 5</span>
-                        <span class="difficulty hard">Difficile</span>
-                    </div>
-                    <div class="exercise-text">
-                        Una lamina triangolare omogenea ha vertici in $(0, 0)$, $(4, 0)$ e $(0, 3)$. Determina le coordinate del baricentro utilizzando gli integrali definiti. (Densità $\rho = 1$ kg/m²)
-                    </div>
-                    <button class="toggle-solution" onclick="toggleSolution(this)">Mostra Soluzione</button>
-                    <div class="solution">
-                        <div class="step">
-                            <div class="step-title">📝 Passo 1: Equazione del lato obliquo</div>
-                            <p>L'ipotenusa del triangolo ha equazione:</p>
-                            <p>$$y = 3 - \frac{3}{4}x$$</p>
-                            <p>per $x \in [0, 4]$</p>
-                        </div>
-
-                        <div class="step">
-                            <div class="step-title">🔧 Passo 2: Area del triangolo</div>
-                            <p>$$A = \int_0^4 \left(3 - \frac{3}{4}x\right) dx = \left[3x - \frac{3x^2}{8}\right]_0^4$$</p>
-                            <p>$$A = 12 - 6 = 6 \text{ m}^2$$</p>
-                            <div class="hint">
-                                💡 Verifica: Area triangolo = $\frac{base \times altezza}{2} = \frac{4 \times 3}{2} = 6$ ✓
-                            </div>
-                        </div>
-
-                        <div class="step">
-                            <div class="step-title">📊 Passo 3: Coordinata x del baricentro</div>
-                            <p>$$\bar{x} = \frac{1}{A} \int_0^4 x \cdot y(x) \, dx = \frac{1}{6} \int_0^4 x\left(3 - \frac{3}{4}x\right) dx$$</p>
-                            <p>$$= \frac{1}{6} \int_0^4 \left(3x - \frac{3x^2}{4}\right) dx$$</p>
-                            <p>$$= \frac{1}{6} \left[\frac{3x^2}{2} - \frac{x^3}{4}\right]_0^4 = \frac{1}{6}(24 - 16) = \frac{8}{6} = \frac{4}{3}$$</p>
-                        </div>
-
-                        <div class="step">
-                            <div class="step-title">📊 Passo 4: Coordinata y del baricentro</div>
-                            <p>$$\bar{y} = \frac{1}{A} \int_0^4 \frac{[y(x)]^2}{2} \, dx = \frac{1}{12} \int_0^4 \left(3 - \frac{3}{4}x\right)^2 dx$$</p>
-                            <p>$$= \frac{1}{12} \int_0^4 \left(9 - \frac{9x}{2} + \frac{9x^2}{16}\right) dx$$</p>
-                            <p>$$= \frac{1}{12} \left[9x - \frac{9x^2}{4} + \frac{3x^3}{16}\right]_0^4$$</p>
-                            <p>$$= \frac{1}{12}(36 - 36 + 12) = 1$$</p>
-                        </div>
-
-                        <div class="step">
-                            <div class="step-title">✅ Risultato Finale</div>
-                            <p>Il baricentro del triangolo è in $G = \left(\frac{4}{3}, 1\right)$</p>
-                            <div class="info">
-                                ℹ️ <strong>Verifica geometrica:</strong> Il baricentro di un triangolo si trova a $\frac{1}{3}$ della mediana da ogni vertice. Questo corrisponde a $\left(\frac{0+4+0}{3}, \frac{0+0+3}{3}\right) = \left(\frac{4}{3}, 1\right)$ ✓
-                            </div>
-                        </div>
-
-                        <div class="graph-container" id="graphF5"></div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- TAB: ESERCIZI MISTI -->
-            <div id="misti" class="tab-content">
-                <h1>🎯 Esercizi Misti</h1>
-
-                <!-- Esercizio Misto 1 -->
-                <div class="exercise-card">
-                    <div class="exercise-header">
-                        <span class="exercise-number">Misto 1</span>
-                        <span class="difficulty medium">Medio</span>
-                    </div>
-                    <div class="exercise-text">
-                        Calcola $\int_0^{\pi/2} \sin^2 x \, dx$ utilizzando la formula di bisezione.
-                    </div>
-                    <button class="toggle-solution" onclick="toggleSolution(this)">Mostra Soluzione</button>
-                    <div class="solution">
-                        <div class="step">
-                            <div class="step-title">📝 Passo 1: Formula di bisezione</div>
-                            <p>Utilizziamo l'identità trigonometrica:</p>
-                            <p>$$\sin^2 x = \frac{1 - \cos 2x}{2}$$</p>
-                            <div class="info">
-                                ℹ️ Questa formula deriva da $\cos 2x = 1 - 2\sin^2 x$
-                            </div>
-                        </div>
-
-                        <div class="step">
-                            <div class="step-title">🔧 Passo 2: Sostituzione nell'integrale</div>
-                            <p>$$\int_0^{\pi/2} \sin^2 x \, dx = \int_0^{\pi/2} \frac{1 - \cos 2x}{2} \, dx$$</p>
-                            <p>$$= \frac{1}{2} \int_0^{\pi/2} (1 - \cos 2x) \, dx$$</p>
-                        </div>
-
-                        <div class="step">
-                            <div class="step-title">📊 Passo 3: Calcolo</div>
-                            <p>$$= \frac{1}{2} \left[ x - \frac{\sin 2x}{2} \right]_0^{\pi/2}$$</p>
-                            <p>$$= \frac{1}{2} \left[\left(\frac{\pi}{2} - 0\right) - (0 - 0)\right] = \frac{\pi}{4}$$</p>
-                        </div>
-
-                        <div class="step">
-                            <div class="step-title">✅ Risultato Finale</div>
-                            <p>$$\int_0^{\pi/2} \sin^2 x \, dx = \frac{\pi}{4}$$</p>
-                        </div>
-
-                        <div class="graph-container" id="graphM1"></div>
-
-                        <div class="hint">
-                            💡 <strong>Simmetria:</strong> Per simmetria, $\int_0^{\pi/2} \cos^2 x \, dx = \frac{\pi}{4}$ e infatti $\sin^2 x + \cos^2 x = 1$!
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Esercizio Misto 2 -->
-                <div class="exercise-card">
-                    <div class="exercise-header">
-                        <span class="exercise-number">Misto 2</span>
-                        <span class="difficulty medium">Medio</span>
-                    </div>
-                    <div class="exercise-text">
-                        Verifica che $\int_{-2}^{2} (x^3 + x) \, dx = 0$ senza calcolare l'integrale direttamente.
-                    </div>
-                    <button class="toggle-solution" onclick="toggleSolution(this)">Mostra Soluzione</button>
-                    <div class="solution">
-                        <div class="step">
-                            <div class="step-title">📝 Passo 1: Riconoscere la funzione dispari</div>
-                            <p>Verifichiamo se $f(x) = x^3 + x$ è dispari:</p>
-                            <p>$$f(-x) = (-x)^3 + (-x) = -x^3 - x = -(x^3 + x) = -f(x)$$</p>
-                            <p>Quindi $f(x)$ è una <strong>funzione dispari</strong>.</p>
-                            <div class="info">
-                                ℹ️ Una funzione è dispari se $f(-x) = -f(x)$ per ogni $x$.
-                            </div>
-                        </div>
-
-                        <div class="step">
-                            <div class="step-title">🔧 Passo 2: Proprietà delle funzioni dispari</div>
-                            <p>Per ogni funzione dispari e continua vale:</p>
-                            <p>$$\int_{-a}^{a} f(x) \, dx = 0$$</p>
-                            <div class="hint">
-                                💡 <strong>Interpretazione geometrica:</strong> L'area sopra l'asse x compensa esattamente l'area sotto l'asse x!
-                            </div>
-                        </div>
-
-                        <div class="step">
-                            <div class="step-title">✅ Conclusione</div>
-                            <p>Poiché $f(x) = x^3 + x$ è dispari e l'intervallo è simmetrico rispetto all'origine:</p>
-                            <p>$$\int_{-2}^{2} (x^3 + x) \, dx = 0$$</p>
-                        </div>
-
-                        <div class="step">
-                            <div class="step-title">🧮 Verifica (opzionale)</div>
-                            <p>Calcoliamo esplicitamente per conferma:</p>
-                            <p>$$\int_{-2}^{2} (x^3 + x) \, dx = \left[\frac{x^4}{4} + \frac{x^2}{2}\right]_{-2}^{2}$$</p>
-                            <p>$$= \left(4 + 2\right) - \left(4 + 2\right) = 0$$ ✓</p>
-                        </div>
-
-                        <div class="graph-container" id="graphM2"></div>
-
-                        <div class="warning">
-                            ⚠️ <strong>Attenzione:</strong> Questa proprietà vale SOLO per funzioni dispari su intervalli simmetrici rispetto all'origine!
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Esercizio Misto 3 -->
-                <div class="exercise-card">
-                    <div class="exercise-header">
-                        <span class="exercise-number">Misto 3</span>
-                        <span class="difficulty hard">Difficile</span>
-                    </div>
-                    <div class="exercise-text">
-                        Calcola il valore medio della funzione $f(x) = x^2 + 1$ nell'intervallo $[0, 3]$ e trova il punto $c$ in cui la funzione assume tale valore.
-                    </div>
-                    <button class="toggle-solution" onclick="toggleSolution(this)">Mostra Soluzione</button>
-                    <div class="solution">
-                        <div class="step">
-                            <div class="step-title">📝 Passo 1: Formula del valore medio</div>
-                            <p>$$f_{medio} = \frac{1}{b-a} \int_a^b f(x) \, dx$$</p>
-                        </div>
-
-                        <div class="step">
-                            <div class="step-title">🔧 Passo 2: Calcolo dell'integrale</div>
-                            <p>$$\int_0^3 (x^2 + 1) \, dx = \left[\frac{x^3}{3} + x\right]_0^3 = 9 + 3 = 12$$</p>
-                        </div>
-
-                        <div class="step">
-                            <div class="step-title">📊 Passo 3: Calcolo del valore medio</div>
-                            <p>$$f_{medio} = \frac{1}{3-0} \cdot 12 = 4$$</p>
-                        </div>
-
-                        <div class="step">
-                            <div class="step-title">🎯 Passo 4: Trovare il punto c</div>
-                            <p>Dobbiamo risolvere $f(c) = 4$:</p>
-                            <p>$$c^2 + 1 = 4$$</p>
-                            <p>$$c^2 = 3$$</p>
-                            <p>$$c = \sqrt{3} \approx 1.732$$ (prendiamo la soluzione positiva nell'intervallo)</p>
-                        </div>
-
-                        <div class="step">
-                            <div class="step-title">✅ Risultato Finale</div>
-                            <p>• Valore medio: <strong>4</strong></p>
-                            <p>• Punto dove viene assunto: <strong>$c = \sqrt{3}$</strong></p>
-                            <div class="info">
-                                ℹ️ <strong>Teorema del valor medio:</strong> Esiste sempre almeno un punto $c \in [a, b]$ dove $f(c) = f_{medio}$
-                            </div>
-                        </div>
-
-                        <div class="graph-container" id="graphM3"></div>
-
-                        <div class="hint">
-                            💡 Il valore medio rappresenta l'altezza del rettangolo che ha la stessa area della regione sotto la curva.
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Esercizio Misto 4 -->
-                <div class="exercise-card">
-                    <div class="exercise-header">
-                        <span class="exercise-number">Misto 4</span>
-                        <span class="difficulty hard">Difficile</span>
-                    </div>
-                    <div class="exercise-text">
-                        Sia $F(x) = \int_0^x t^2 \sin t \, dt$. Calcola $F'(x)$ e $F''(x)$.
-                    </div>
-                    <button class="toggle-solution" onclick="toggleSolution(this)">Mostra Soluzione</button>
-                    <div class="solution">
-                        <div class="step">
-                            <div class="step-title">📝 Passo 1: Prima parte del Teorema Fondamentale</div>
-                            <p>Se $F(x) = \int_a^x f(t) \, dt$, allora:</p>
-                            <p>$$F'(x) = f(x)$$</p>
-                            <div class="info">
-                                ℹ️ La derivata di una funzione integrale è la funzione integranda (con la variabile corretta)!
-                            </div>
-                        </div>
-
-                        <div class="step">
-                            <div class="step-title">🔧 Passo 2: Calcolo di F'(x)</div>
-                            <p>$$F'(x) = x^2 \sin x$$</p>
-                        </div>
-
-                        <div class="step">
-                            <div class="step-title">📊 Passo 3: Calcolo di F''(x)</div>
-                            <p>Deriviamo $F'(x)$ usando la regola del prodotto:</p>
-                            <p>$$F''(x) = (x^2 \sin x)' = 2x \sin x + x^2 \cos x$$</p>
-                        </div>
-
-                        <div class="step">
-                            <div class="step-title">✅ Risultati Finali</div>
-                            <p>$$F'(x) = x^2 \sin x$$</p>
-                            <p>$$F''(x) = 2x \sin x + x^2 \cos x$$</p>
-                        </div>
-
-                        <div class="graph-container" id="graphM4"></div>
-
-                        <div class="warning">
-                            ⚠️ <strong>Errore comune:</strong> Non dimenticare la regola del prodotto quando derivi $F'(x)$!
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Esercizio Misto 5 -->
-                <div class="exercise-card">
-                    <div class="exercise-header">
-                        <span class="exercise-number">Misto 5</span>
-                        <span class="difficulty hard">Difficile</span>
-                    </div>
-                    <div class="exercise-text">
-                        Calcola $\int_1^e \frac{\ln x}{x} \, dx$ usando la sostituzione appropriata.
-                    </div>
-                    <button class="toggle-solution" onclick="toggleSolution(this)">Mostra Soluzione</button>
-                    <div class="solution">
-                        <div class="step">
-                            <div class="step-title">📝 Passo 1: Scelta della sostituzione</div>
-                            <p>Poniamo $u = \ln x$</p>
-                            <p>Allora: $du = \frac{1}{x} dx$</p>
-                            <div class="hint">
-                                💡 Questa sostituzione semplifica enormemente l'integrale!
-                            </div>
-                        </div>
-
-                        <div class="step">
-                            <div class="step-title">🔄 Passo 2: Cambio degli estremi</div>
-                            <p>Quando $x = 1$: $u = \ln 1 = 0$</p>
-                            <p>Quando $x = e$: $u = \ln e = 1$</p>
-                        </div>
-
-                        <div class="step">
-                            <div class="step-title">🔧 Passo 3: Riscrittura dell'integrale</div>
-                            <p>$$\int_1^e \frac{\ln x}{x} \, dx = \int_0^1 u \, du$$</p>
-                            <p>L'integrale è diventato molto più semplice!</p>
-                        </div>
-
-                        <div class="step">
-                            <div class="step-title">📊 Passo 4: Calcolo</div>
-                            <p>$$\int_0^1 u \, du = \left[\frac{u^2}{2}\right]_0^1 = \frac{1}{2} - 0 = \frac{1}{2}$$</p>
-                        </div>
-
-                        <div class="step">
-                            <div class="step-title">✅ Risultato Finale</div>
-                            <p>$$\int_1^e \frac{\ln x}{x} \, dx = \frac{1}{2}$$</p>
-                        </div>
-
-                        <div class="graph-container" id="graphM5"></div>
-
-                        <div class="info">
-                            ℹ️ <strong>Metodo alternativo:</strong> Riconoscendo che $\frac{d}{dx}[(\ln x)^2] = 2\frac{\ln x}{x}$, potremmo calcolare direttamente $\frac{1}{2}[(\ln x)^2]_1^e = \frac{1}{2}$.
-                        </div>
-                    </div>
-                </div>
-            </div>
-
             <!-- TAB: GRAFICI INTERATTIVI -->
-            <div id="interattivi" class="tab-content">
+            <div id="interattivi" class="tab-content active">
                 <h1>🎮 Grafici Interattivi</h1>
 
                 <div class="interactive-section">
-                    <h2>Visualizzazione dell'Integrale Definito</h2>
+                    <h2>1. Visualizzazione dell'Integrale Definito</h2>
                     <p>Esplora come cambia l'area sotto la curva modificando la funzione e gli estremi di integrazione!</p>
                     
                     <div style="margin: 30px 0;">
                         <label class="slider-label">
-                            <span>Estremo superiore (b): <span id="b-value">2</span></span>
+                            <span>Estremo superiore (b):</span>
+                            <span id="b-value">2.0</span>
                         </label>
                         <input type="range" id="b-slider" min="0.5" max="5" step="0.1" value="2" 
                                oninput="updateInteractiveGraph()">
                         
                         <label class="slider-label" style="margin-top: 20px;">
-                            <span>Coefficiente (c): <span id="c-value">1</span></span>
+                            <span>Coefficiente (c):</span>
+                            <span id="c-value">1.0</span>
                         </label>
                         <input type="range" id="c-slider" min="0.5" max="3" step="0.1" value="1" 
                                oninput="updateInteractiveGraph()">
@@ -1327,17 +233,19 @@ window.MathJax = {
                     <div class="graph-container" id="interactive-graph"></div>
                     
                     <div class="formula-box" id="area-display">
-                        Area = ...
+                        <h3 style="color: white; margin-bottom: 15px;">Risultato</h3>
+                        <p>Muovi gli slider per vedere il calcolo...</p>
                     </div>
                 </div>
 
                 <div class="interactive-section">
-                    <h2>Confronto tra Funzioni</h2>
+                    <h2>2. Confronto tra Funzioni</h2>
                     <p>Visualizza l'area tra due curve e come varia cambiando i parametri.</p>
                     
                     <div style="margin: 30px 0;">
                         <label class="slider-label">
-                            <span>Parametro k: <span id="k-value">1</span></span>
+                            <span>Parametro k:</span>
+                            <span id="k-value">1.0</span>
                         </label>
                         <input type="range" id="k-slider" min="0.5" max="2" step="0.1" value="1" 
                                oninput="updateComparisonGraph()">
@@ -1347,12 +255,13 @@ window.MathJax = {
                 </div>
 
                 <div class="interactive-section">
-                    <h2>Somme di Riemann</h2>
+                    <h2>3. Somme di Riemann</h2>
                     <p>Osserva come le somme di Riemann approssimano l'integrale definito aumentando il numero di rettangoli.</p>
                     
                     <div style="margin: 30px 0;">
                         <label class="slider-label">
-                            <span>Numero di rettangoli (n): <span id="n-value">5</span></span>
+                            <span>Numero di rettangoli (n):</span>
+                            <span id="n-value">5</span>
                         </label>
                         <input type="range" id="n-slider" min="1" max="50" step="1" value="5" 
                                oninput="updateRiemannGraph()">
@@ -1361,7 +270,8 @@ window.MathJax = {
                     <div class="graph-container" id="riemann-graph"></div>
                     
                     <div class="formula-box" id="riemann-sum">
-                        Somma di Riemann = ...
+                        <h3 style="color: white; margin-bottom: 15px;">Somma di Riemann</h3>
+                        <p>Muovi lo slider per vedere l'approssimazione...</p>
                     </div>
                 </div>
             </div>
@@ -1371,668 +281,18 @@ window.MathJax = {
     <script>
         // Funzione per cambiare tab
         function showTab(tabName) {
-            // Nascondi tutti i contenuti
             const contents = document.querySelectorAll('.tab-content');
             contents.forEach(content => content.classList.remove('active'));
             
-            // Rimuovi active da tutti i menu
             const menuItems = document.querySelectorAll('.menu-item');
             menuItems.forEach(item => item.classList.remove('active'));
             
-            // Mostra il contenuto selezionato
             document.getElementById(tabName).classList.add('active');
-            
-            // Attiva il menu selezionato
             event.target.classList.add('active');
             
-            // Inizializza grafici se necessario
-            if (tabName === 'geometria') initGeometryGraphs();
-            if (tabName === 'fisica') initPhysicsGraphs();
-            if (tabName === 'misti') initMixedGraphs();
-            if (tabName === 'interattivi') initInteractiveGraphs();
-        }
-
-        // Funzione per mostrare/nascondere soluzioni
-        function toggleSolution(button) {
-            const solution = button.nextElementSibling;
-            if (solution.classList.contains('show')) {
-                solution.classList.remove('show');
-                button.textContent = 'Mostra Soluzione';
-            } else {
-                solution.classList.add('show');
-                button.textContent = 'Nascondi Soluzione';
-                // Inizializza il grafico quando la soluzione viene mostrata
-                const graphId = solution.querySelector('.graph-container')?.id;
-                if (graphId) {
-                    setTimeout(() => createGraph(graphId), 100);
-                }
+            if (tabName === 'interattivi') {
+                setTimeout(initInteractiveGraphs, 100);
             }
-        }
-
-        // Funzione generica per creare grafici
-        function createGraph(graphId) {
-            if (!document.getElementById(graphId)) return;
-            
-            const graphs = {
-                'graph1': () => {
-                    const x = [];
-                    const y = [];
-                    for (let i = 0; i <= 2; i += 0.01) {
-                        x.push(i);
-                        y.push(i * i);
-                    }
-                    
-                    const trace1 = {
-                        x: x,
-                        y: y,
-                        mode: 'lines',
-                        name: 'y = x²',
-                        line: {color: '#667eea', width: 3}
-                    };
-                    
-                    const trace2 = {
-                        x: x,
-                        y: y,
-                        fill: 'tozeroy',
-                        fillcolor: 'rgba(102, 126, 234, 0.3)',
-                        line: {color: 'transparent'},
-                        name: 'Area',
-                        showlegend: false
-                    };
-                    
-                    const layout = {
-                        title: 'Area sotto y = x² da 0 a 2',
-                        xaxis: {title: 'x'},
-                        yaxis: {title: 'y'},
-                        showlegend: true
-                    };
-                    
-                    Plotly.newPlot(graphId, [trace2, trace1], layout, {responsive: true});
-                },
-                
-                'graph2': () => {
-                    const x = [];
-                    const y1 = [];
-                    const y2 = [];
-                    for (let i = -1.5; i <= 2.5; i += 0.01) {
-                        x.push(i);
-                        y1.push(i * i);
-                        y2.push(i + 2);
-                    }
-                    
-                    const trace1 = {
-                        x: x,
-                        y: y1,
-                        mode: 'lines',
-                        name: 'y = x²',
-                        line: {color: '#667eea', width: 3}
-                    };
-                    
-                    const trace2 = {
-                        x: x,
-                        y: y2,
-                        mode: 'lines',
-                        name: 'y = x + 2',
-                        line: {color: '#f5576c', width: 3}
-                    };
-                    
-                    // Area tra le curve
-                    const xFill = [];
-                    const yFill = [];
-                    for (let i = -1; i <= 2; i += 0.01) {
-                        xFill.push(i);
-                        yFill.push((i + 2) - (i * i));
-                    }
-                    
-                    const trace3 = {
-                        x: [...xFill, ...xFill.slice().reverse()],
-                        y: [...xFill.map(x => x * x), ...xFill.slice().reverse().map(x => x + 2)],
-                        fill: 'toself',
-                        fillcolor: 'rgba(102, 126, 234, 0.3)',
-                        line: {color: 'transparent'},
-                        name: 'Area tra le curve',
-                        showlegend: false
-                    };
-                    
-                    const layout = {
-                        title: 'Area tra y = x² e y = x + 2',
-                        xaxis: {title: 'x'},
-                        yaxis: {title: 'y'}
-                    };
-                    
-                    Plotly.newPlot(graphId, [trace3, trace1, trace2], layout, {responsive: true});
-                },
-                
-                'graph3': () => {
-                    const x = [];
-                    const y = [];
-                    for (let i = 0; i <= 4; i += 0.1) {
-                        x.push(i);
-                        y.push(Math.sqrt(i));
-                    }
-                    
-                    const trace1 = {
-                        x: x,
-                        y: y,
-                        mode: 'lines',
-                        name: 'y = √x',
-                        line: {color: '#667eea', width: 3}
-                    };
-                    
-                    const trace2 = {
-                        x: x,
-                        y: y,
-                        fill: 'tozeroy',
-                        fillcolor: 'rgba(102, 126, 234, 0.3)',
-                        line: {color: 'transparent'},
-                        name: 'Area',
-                        showlegend: false
-                    };
-                    
-                    const layout = {
-                        title: 'Regione da ruotare attorno all\'asse x',
-                        xaxis: {title: 'x'},
-                        yaxis: {title: 'y'},
-                        annotations: [{
-                            x: 2,
-                            y: 1.5,
-                            text: 'Ruota attorno all\'asse x →',
-                            showarrow: true,
-                            arrowhead: 2
-                        }]
-                    };
-                    
-                    Plotly.newPlot(graphId, [trace2, trace1], layout, {responsive: true});
-                },
-                
-                'graph4': () => {
-                    const x = [];
-                    const ySin = [];
-                    const yCos = [];
-                    for (let i = 0; i <= Math.PI; i += 0.01) {
-                        x.push(i);
-                        ySin.push(Math.sin(i));
-                        yCos.push(Math.cos(i));
-                    }
-                    
-                    const trace1 = {
-                        x: x,
-                        y: ySin,
-                        mode: 'lines',
-                        name: 'y = sin(x)',
-                        line: {color: '#667eea', width: 3}
-                    };
-                    
-                    const trace2 = {
-                        x: x,
-                        y: yCos,
-                        mode: 'lines',
-                        name: 'y = cos(x)',
-                        line: {color: '#f5576c', width: 3}
-                    };
-                    
-                    // Area prima parte
-                    const x1 = [];
-                    for (let i = 0; i <= Math.PI/4; i += 0.01) {
-                        x1.push(i);
-                    }
-                    
-                    const trace3 = {
-                        x: [...x1, ...x1.slice().reverse()],
-                        y: [...x1.map(x => Math.sin(x)), ...x1.slice().reverse().map(x => Math.cos(x))],
-                        fill: 'toself',
-                        fillcolor: 'rgba(72, 187, 120, 0.3)',
-                        line: {color: 'transparent'},
-                        name: 'Area 1',
-                        showlegend: false
-                    };
-                    
-                    // Area seconda parte
-                    const x2 = [];
-                    for (let i = Math.PI/4; i <= Math.PI; i += 0.01) {
-                        x2.push(i);
-                    }
-                    
-                    const trace4 = {
-                        x: [...x2, ...x2.slice().reverse()],
-                        y: [...x2.map(x => Math.cos(x)), ...x2.slice().reverse().map(x => Math.sin(x))],
-                        fill: 'toself',
-                        fillcolor: 'rgba(237, 137, 54, 0.3)',
-                        line: {color: 'transparent'},
-                        name: 'Area 2',
-                        showlegend: false
-                    };
-                    
-                    const layout = {
-                        title: 'Area tra sin(x) e cos(x)',
-                        xaxis: {title: 'x'},
-                        yaxis: {title: 'y'}
-                    };
-                    
-                    Plotly.newPlot(graphId, [trace3, trace4, trace1, trace2], layout, {responsive: true});
-                },
-                
-                // Grafici Fisica
-                'graphF1': () => {
-                    const t = [];
-                    const v = [];
-                    for (let i = 0; i <= 4; i += 0.1) {
-                        t.push(i);
-                        v.push(3*i*i - 2*i);
-                    }
-                    
-                    const trace1 = {
-                        x: t,
-                        y: v,
-                        mode: 'lines',
-                        name: 'v(t) = 3t² - 2t',
-                        line: {color: '#667eea', width: 3}
-                    };
-                    
-                    const trace2 = {
-                        x: t,
-                        y: v,
-                        fill: 'tozeroy',
-                        fillcolor: 'rgba(102, 126, 234, 0.3)',
-                        line: {color: 'transparent'},
-                        name: 'Spostamento',
-                        showlegend: false
-                    };
-                    
-                    const layout = {
-                        title: 'Velocità vs Tempo',
-                        xaxis: {title: 't (s)'},
-                        yaxis: {title: 'v (m/s)'}
-                    };
-                    
-                    Plotly.newPlot(graphId, [trace2, trace1], layout, {responsive: true});
-                },
-                
-                'graphF2': () => {
-                    const x = [];
-                    const F = [];
-                    for (let i = 0; i <= 8; i += 0.1) {
-                        x.push(i);
-                        F.push(20 - 2*i);
-                    }
-                    
-                    const trace1 = {
-                        x: x,
-                        y: F,
-                        mode: 'lines',
-                        name: 'F(x) = 20 - 2x',
-                        line: {color: '#f5576c', width: 3}
-                    };
-                    
-                    const trace2 = {
-                        x: x,
-                        y: F,
-                        fill: 'tozeroy',
-                        fillcolor: 'rgba(245, 87, 108, 0.3)',
-                        line: {color: 'transparent'},
-                        name: 'Lavoro',
-                        showlegend: false
-                    };
-                    
-                    const layout = {
-                        title: 'Forza vs Posizione',
-                        xaxis: {title: 'x (m)'},
-                        yaxis: {title: 'F (N)'}
-                    };
-                    
-                    Plotly.newPlot(graphId, [trace2, trace1], layout, {responsive: true});
-                },
-                
-                'graphF3': () => {
-                    const t = [];
-                    const a = [];
-                    const v = [];
-                    for (let i = 0; i <= 6; i += 0.1) {
-                        t.push(i);
-                        a.push(4 - 0.5*i);
-                        v.push(4*i - 0.25*i*i);
-                    }
-                    
-                    const trace1 = {
-                        x: t,
-                        y: a,
-                        mode: 'lines',
-                        name: 'a(t) = 4 - 0.5t',
-                        line: {color: '#f5576c', width: 3}
-                    };
-                    
-                    const trace2 = {
-                        x: t,
-                        y: v,
-                        mode: 'lines',
-                        name: 'v(t) = 4t - 0.25t²',
-                        line: {color: '#667eea', width: 3},
-                        yaxis: 'y2'
-                    };
-                    
-                    const layout = {
-                        title: 'Accelerazione e Velocità vs Tempo',
-                        xaxis: {title: 't (s)'},
-                        yaxis: {title: 'a (m/s²)', side: 'left', color: '#f5576c'},
-                        yaxis2: {
-                            title: 'v (m/s)',
-                            overlaying: 'y',
-                            side: 'right',
-                            color: '#667eea'
-                        }
-                    };
-                    
-                    Plotly.newPlot(graphId, [trace1, trace2], layout, {responsive: true});
-                },
-                
-                'graphF4': () => {
-                    const x = [];
-                    const F = [];
-                    for (let i = 0; i <= 0.3; i += 0.01) {
-                        x.push(i);
-                        F.push(200*i);
-                    }
-                    
-                    const trace1 = {
-                        x: x,
-                        y: F,
-                        mode: 'lines',
-                        name: 'F = 200x',
-                        line: {color: '#667eea', width: 3}
-                    };
-                    
-                    const trace2 = {
-                        x: x,
-                        y: F,
-                        fill: 'tozeroy',
-                        fillcolor: 'rgba(102, 126, 234, 0.3)',
-                        line: {color: 'transparent'},
-                        name: 'Lavoro = Energia',
-                        showlegend: false
-                    };
-                    
-                    const layout = {
-                        title: 'Forza Elastica vs Compressione',
-                        xaxis: {title: 'x (m)'},
-                        yaxis: {title: 'F (N)'}
-                    };
-                    
-                    Plotly.newPlot(graphId, [trace2, trace1], layout, {responsive: true});
-                },
-                
-                'graphF5': () => {
-                    const trace1 = {
-                        x: [0, 4, 0, 0],
-                        y: [0, 0, 3, 0],
-                        mode: 'lines',
-                        name: 'Triangolo',
-                        line: {color: '#667eea', width: 3},
-                        fill: 'toself',
-                        fillcolor: 'rgba(102, 126, 234, 0.3)'
-                    };
-                    
-                    const trace2 = {
-                        x: [4/3],
-                        y: [1],
-                        mode: 'markers',
-                        name: 'Baricentro',
-                        marker: {size: 15, color: '#f5576c', symbol: 'x'}
-                    };
-                    
-                    const layout = {
-                        title: 'Triangolo e suo Baricentro',
-                        xaxis: {title: 'x', range: [-0.5, 4.5]},
-                        yaxis: {title: 'y', range: [-0.5, 3.5]},
-                        annotations: [{
-                            x: 4/3,
-                            y: 1,
-                            text: 'G(4/3, 1)',
-                            showarrow: true,
-                            arrowhead: 2,
-                            ax: 30,
-                            ay: -30
-                        }]
-                    };
-                    
-                    Plotly.newPlot(graphId, [trace1, trace2], layout, {responsive: true});
-                },
-                
-                // Grafici Misti
-                'graphM1': () => {
-                    const x = [];
-                    const y = [];
-                    for (let i = 0; i <= Math.PI/2; i += 0.01) {
-                        x.push(i);
-                        y.push(Math.sin(i) * Math.sin(i));
-                    }
-                    
-                    const trace1 = {
-                        x: x,
-                        y: y,
-                        mode: 'lines',
-                        name: 'y = sin²(x)',
-                        line: {color: '#667eea', width: 3}
-                    };
-                    
-                    const trace2 = {
-                        x: x,
-                        y: y,
-                        fill: 'tozeroy',
-                        fillcolor: 'rgba(102, 126, 234, 0.3)',
-                        line: {color: 'transparent'},
-                        name: 'Area = π/4',
-                        showlegend: false
-                    };
-                    
-                    const layout = {
-                        title: 'y = sin²(x) da 0 a π/2',
-                        xaxis: {title: 'x'},
-                        yaxis: {title: 'y'}
-                    };
-                    
-                    Plotly.newPlot(graphId, [trace2, trace1], layout, {responsive: true});
-                },
-                
-                'graphM2': () => {
-                    const x = [];
-                    const y = [];
-                    for (let i = -2; i <= 2; i += 0.01) {
-                        x.push(i);
-                        y.push(i*i*i + i);
-                    }
-                    
-                    const trace1 = {
-                        x: x,
-                        y: y,
-                        mode: 'lines',
-                        name: 'f(x) = x³ + x',
-                        line: {color: '#667eea', width: 3}
-                    };
-                    
-                    // Area positiva
-                    const xPos = [];
-                    const yPos = [];
-                    for (let i = 0; i <= 2; i += 0.01) {
-                        xPos.push(i);
-                        yPos.push(i*i*i + i);
-                    }
-                    
-                    const trace2 = {
-                        x: xPos,
-                        y: yPos,
-                        fill: 'tozeroy',
-                        fillcolor: 'rgba(72, 187, 120, 0.3)',
-                        line: {color: 'transparent'},
-                        name: 'Area positiva',
-                        showlegend: false
-                    };
-                    
-                    // Area negativa
-                    const xNeg = [];
-                    const yNeg = [];
-                    for (let i = -2; i <= 0; i += 0.01) {
-                        xNeg.push(i);
-                        yNeg.push(i*i*i + i);
-                    }
-                    
-                    const trace3 = {
-                        x: xNeg,
-                        y: yNeg,
-                        fill: 'tozeroy',
-                        fillcolor: 'rgba(245, 87, 108, 0.3)',
-                        line: {color: 'transparent'},
-                        name: 'Area negativa',
-                        showlegend: false
-                    };
-                    
-                    const layout = {
-                        title: 'Funzione dispari: area totale = 0',
-                        xaxis: {title: 'x', zeroline: true},
-                        yaxis: {title: 'y', zeroline: true}
-                    };
-                    
-                    Plotly.newPlot(graphId, [trace3, trace2, trace1], layout, {responsive: true});
-                },
-                
-                'graphM3': () => {
-                    const x = [];
-                    const y = [];
-                    for (let i = 0; i <= 3; i += 0.01) {
-                        x.push(i);
-                        y.push(i*i + 1);
-                    }
-                    
-                    const trace1 = {
-                        x: x,
-                        y: y,
-                        mode: 'lines',
-                        name: 'f(x) = x² + 1',
-                        line: {color: '#667eea', width: 3}
-                    };
-                    
-                    const trace2 = {
-                        x: x,
-                        y: y,
-                        fill: 'tozeroy',
-                        fillcolor: 'rgba(102, 126, 234, 0.3)',
-                        line: {color: 'transparent'},
-                        name: 'Area',
-                        showlegend: false
-                    };
-                    
-                    // Rettangolo del valore medio
-                    const trace3 = {
-                        x: [0, 3, 3, 0, 0],
-                        y: [0, 0, 4, 4, 0],
-                        mode: 'lines',
-                        name: 'Valore medio = 4',
-                        line: {color: '#f5576c', width: 2, dash: 'dash'}
-                    };
-                    
-                    // Punto c
-                    const trace4 = {
-                        x: [Math.sqrt(3)],
-                        y: [4],
-                        mode: 'markers',
-                        name: 'c = √3',
-                        marker: {size: 12, color: '#f5576c'}
-                    };
-                    
-                    const layout = {
-                        title: 'Valore medio di f(x) = x² + 1',
-                        xaxis: {title: 'x'},
-                        yaxis: {title: 'y'}
-                    };
-                    
-                    Plotly.newPlot(graphId, [trace2, trace1, trace3, trace4], layout, {responsive: true});
-                },
-                
-                'graphM4': () => {
-                    const x = [];
-                    const y = [];
-                    const yPrime = [];
-                    for (let i = 0; i <= 2*Math.PI; i += 0.01) {
-                        x.push(i);
-                        y.push(i*i * Math.sin(i));
-                        yPrime.push(2*i*Math.sin(i) + i*i*Math.cos(i));
-                    }
-                    
-                    const trace1 = {
-                        x: x,
-                        y: y,
-                        mode: 'lines',
-                        name: 'F\'(x) = x²sin(x)',
-                        line: {color: '#667eea', width: 3}
-                    };
-                    
-                    const trace2 = {
-                        x: x,
-                        y: yPrime,
-                        mode: 'lines',
-                        name: 'F\'\'(x) = 2xsin(x) + x²cos(x)',
-                        line: {color: '#f5576c', width: 3}
-                    };
-                    
-                    const layout = {
-                        title: 'Derivate di F(x)',
-                        xaxis: {title: 'x'},
-                        yaxis: {title: 'y'}
-                    };
-                    
-                    Plotly.newPlot(graphId, [trace1, trace2], layout, {responsive: true});
-                },
-                
-                'graphM5': () => {
-                    const x = [];
-                    const y = [];
-                    for (let i = 1; i <= Math.E; i += 0.01) {
-                        x.push(i);
-                        y.push(Math.log(i) / i);
-                    }
-                    
-                    const trace1 = {
-                        x: x,
-                        y: y,
-                        mode: 'lines',
-                        name: 'f(x) = ln(x)/x',
-                        line: {color: '#667eea', width: 3}
-                    };
-                    
-                    const trace2 = {
-                        x: x,
-                        y: y,
-                        fill: 'tozeroy',
-                        fillcolor: 'rgba(102, 126, 234, 0.3)',
-                        line: {color: 'transparent'},
-                        name: 'Area = 1/2',
-                        showlegend: false
-                    };
-                    
-                    const layout = {
-                        title: 'y = ln(x)/x da 1 a e',
-                        xaxis: {title: 'x'},
-                        yaxis: {title: 'y'}
-                    };
-                    
-                    Plotly.newPlot(graphId, [trace2, trace1], layout, {responsive: true});
-                }
-            };
-            
-            if (graphs[graphId]) {
-                graphs[graphId]();
-            }
-        }
-
-        function initGeometryGraphs() {
-            // I grafici verranno inizializzati quando la soluzione viene aperta
-        }
-
-        function initPhysicsGraphs() {
-            // I grafici verranno inizializzati quando la soluzione viene aperta
-        }
-
-        function initMixedGraphs() {
-            // I grafici verranno inizializzati quando la soluzione viene aperta
         }
 
         // Grafici Interattivi
@@ -2060,7 +320,7 @@ window.MathJax = {
                 x: x,
                 y: y,
                 mode: 'lines',
-                name: `y = ${c.toFixed(1)}x²`,
+                name: 'y = ' + c.toFixed(1) + 'x²',
                 line: {color: '#667eea', width: 3}
             };
             
@@ -2074,20 +334,20 @@ window.MathJax = {
             };
             
             const layout = {
-                title: `Integrale di ${c.toFixed(1)}x² da 0 a ${b.toFixed(1)}`,
+                title: 'Integrale di ' + c.toFixed(1) + 'x² da 0 a ' + b.toFixed(1),
                 xaxis: {title: 'x', range: [0, 5]},
                 yaxis: {title: 'y', range: [0, 25]},
-                showlegend: true
+                showlegend: true,
+                margin: {t: 50, b: 50, l: 50, r: 50}
             };
             
             Plotly.newPlot('interactive-graph', [trace2, trace1], layout, {responsive: true});
             
             const area = (c * Math.pow(b, 3)) / 3;
-            document.getElementById('area-display').innerHTML = `
-                <h3 style="color: white; margin-bottom: 15px;">Risultato</h3>
-                <p>$$\\int_0^{${b.toFixed(1)}} ${c.toFixed(1)}x^2 \\, dx = \\left[\\frac{${c.toFixed(1)}x^3}{3}\\right]_0^{${b.toFixed(1)}} = ${area.toFixed(3)}$$</p>
-            `;
-            MathJax.typeset();
+            document.getElementById('area-display').innerHTML = 
+                '<h3 style="color: white; margin-bottom: 15px;">Risultato</h3>' +
+                '<p style="font-size: 20px;">Area = ' + area.toFixed(3) + '</p>' +
+                '<p style="font-size: 16px; margin-top: 10px;">Formula: ∫₀^' + b.toFixed(1) + ' ' + c.toFixed(1) + 'x² dx = [' + c.toFixed(1) + 'x³/3]₀^' + b.toFixed(1) + '</p>';
         }
 
         function updateComparisonGraph() {
@@ -2104,11 +364,41 @@ window.MathJax = {
                 y2.push(i + 2);
             }
             
-            // Trova intersezioni
+            // Trova intersezioni: kx² = x + 2 → kx² - x - 2 = 0
             const a = k;
             const b = -1;
             const c = -2;
             const discriminant = b*b - 4*a*c;
+            
+            if (discriminant < 0) {
+                // Nessuna intersezione reale
+                const trace1 = {
+                    x: x,
+                    y: y1,
+                    mode: 'lines',
+                    name: 'y = ' + k.toFixed(1) + 'x²',
+                    line: {color: '#667eea', width: 3}
+                };
+                
+                const trace2 = {
+                    x: x,
+                    y: y2,
+                    mode: 'lines',
+                    name: 'y = x + 2',
+                    line: {color: '#f5576c', width: 3}
+                };
+                
+                const layout = {
+                    title: 'Le curve non si intersecano!',
+                    xaxis: {title: 'x'},
+                    yaxis: {title: 'y'},
+                    margin: {t: 50, b: 50, l: 50, r: 50}
+                };
+                
+                Plotly.newPlot('comparison-graph', [trace1, trace2], layout, {responsive: true});
+                return;
+            }
+            
             const x1 = (-b - Math.sqrt(discriminant)) / (2*a);
             const x2 = (-b + Math.sqrt(discriminant)) / (2*a);
             
@@ -2116,7 +406,7 @@ window.MathJax = {
                 x: x,
                 y: y1,
                 mode: 'lines',
-                name: `y = ${k.toFixed(1)}x²`,
+                name: 'y = ' + k.toFixed(1) + 'x²',
                 line: {color: '#667eea', width: 3}
             };
             
@@ -2134,9 +424,12 @@ window.MathJax = {
                 xFill.push(i);
             }
             
+            const yFillTop = xFill.map(x => x + 2);
+            const yFillBottom = xFill.map(x => k * x * x);
+            
             const trace3 = {
                 x: [...xFill, ...xFill.slice().reverse()],
-                y: [...xFill.map(x => k*x*x), ...xFill.slice().reverse().map(x => x + 2)],
+                y: [...yFillBottom, ...yFillTop.slice().reverse()],
                 fill: 'toself',
                 fillcolor: 'rgba(102, 126, 234, 0.3)',
                 line: {color: 'transparent'},
@@ -2144,9 +437,10 @@ window.MathJax = {
             };
             
             const layout = {
-                title: `Area tra ${k.toFixed(1)}x² e x + 2`,
+                title: 'Area tra ' + k.toFixed(1) + 'x² e x + 2',
                 xaxis: {title: 'x'},
-                yaxis: {title: 'y'}
+                yaxis: {title: 'y'},
+                margin: {t: 50, b: 50, l: 50, r: 50}
             };
             
             Plotly.newPlot('comparison-graph', [trace3, trace1, trace2], layout, {responsive: true});
@@ -2200,10 +494,11 @@ window.MathJax = {
             }
             
             const layout = {
-                title: `Somma di Riemann con ${n} rettangoli`,
+                title: 'Somma di Riemann con ' + n + ' rettangoli',
                 xaxis: {title: 'x'},
                 yaxis: {title: 'y'},
-                shapes: shapes
+                shapes: shapes,
+                margin: {t: 50, b: 50, l: 50, r: 50}
             };
             
             Plotly.newPlot('riemann-graph', [trace1], layout, {responsive: true});
@@ -2212,21 +507,17 @@ window.MathJax = {
             const error = Math.abs(riemannSum - exactValue);
             const errorPercent = (error / exactValue * 100).toFixed(2);
             
-            document.getElementById('riemann-sum').innerHTML = `
-                <h3 style="color: white; margin-bottom: 15px;">Somma di Riemann</h3>
-                <p>Approssimazione: <strong>${riemannSum.toFixed(4)}</strong></p>
-                <p>Valore esatto: <strong>${exactValue.toFixed(4)}</strong></p>
-                <p>Errore: <strong>${error.toFixed(4)}</strong> (${errorPercent}%)</p>
-            `;
+            document.getElementById('riemann-sum').innerHTML = 
+                '<h3 style="color: white; margin-bottom: 15px;">Somma di Riemann</h3>' +
+                '<p style="font-size: 18px;">Approssimazione: <strong>' + riemannSum.toFixed(4) + '</strong></p>' +
+                '<p style="font-size: 18px;">Valore esatto: <strong>' + exactValue.toFixed(4) + '</strong></p>' +
+                '<p style="font-size: 18px;">Errore: <strong>' + error.toFixed(4) + '</strong> (' + errorPercent + '%)</p>';
         }
 
-        // Inizializza MathJax
-        window.MathJax = {
-            tex: {
-                inlineMath: [['$', '$']],
-                displayMath: [['$$', '$$']]
-            }
-        };
+        // Inizializza i grafici al caricamento della pagina
+        window.addEventListener('load', function() {
+            initInteractiveGraphs();
+        });
     </script>
 </body>
 </html>
